@@ -10,9 +10,7 @@ const port = 3000
 const{ Categories } = require("./Categories")
 const{ Projects } = require("./Projects")
 
-app.use(cors({
-  origin: "https://gerenciadorapi2.onrender.com"
-}));
+app.use(cors());
 
 // Category
 app.get("/categories", async (req, res) => {
