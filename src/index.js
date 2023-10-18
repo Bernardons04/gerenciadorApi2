@@ -35,11 +35,6 @@ app.get("/projects", async (req, res) => {
   res.send(projects)
 })
 
-app.get("/projects/:id", async (req, res) => {
-  const project = await Projects.find(req.params.id)
-  res.send(project)
-})
-
 app.delete("/projects/:id", async (req, res) => {
   const project = await Projects.findByIdAndRemove(req.params.id)
   res.send(project)
