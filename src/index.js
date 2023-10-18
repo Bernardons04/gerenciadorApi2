@@ -9,9 +9,10 @@ const port = 3000
 
 const{ Categories } = require("./Categories")
 const{ Projects } = require("./Projects")
+const bodyParser = require("body-parser")
 
 app.use(cors());
-
+app.use(bodyParser.json())
 // Category
 app.get("/categories", async (req, res) => {
   const categories = await Categories.find()
