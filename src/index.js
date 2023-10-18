@@ -1,6 +1,7 @@
 // Versão do Gabriel Rangel - Fala, Coders! 
 const express = require("express")
 const mongoose = require("mongoose")
+const cors = require("cors");
 
 const app = express()
 app.use(express.json())
@@ -8,6 +9,10 @@ const port = 3000
 
 const{ Categories } = require("./Categories")
 const{ Projects } = require("./Projects")
+
+app.use(cors({
+  origin: "https://gerenciadorapi2.onrender.com"
+}));
 
 // Category
 app.get("/categories", async (req, res) => {
