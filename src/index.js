@@ -35,9 +35,7 @@ app.get("/projects", async (req, res) => {
 })
 
 app.get("/project/:id", async (req, res) => {
-  const { name, budget, category, services } = req.body;
-  const project = new Projects({ name, budget, category, services })
-  await project.save()
+  const project = await Projects.find(req.params.id)
   res.send(project)
 })
 
