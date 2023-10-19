@@ -44,7 +44,7 @@ app.get("/projects", async (req, res) => {
 })
 
 app.get("/projects/:id", async (req, res) => {
-  const project = await Projects.find(req.params.id)
+  const project = await Projects.findById(req.params.id)
   res.send(project)
 })
 
