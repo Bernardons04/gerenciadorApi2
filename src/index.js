@@ -11,7 +11,7 @@ const{ Categories } = require("./Categories")
 const{ Projects } = require("./Projects")
 
 app.use(cors({
-  origin: "http://localhost:5174"
+  origin: "http://localhost:5175"
 }));
 
 // Category
