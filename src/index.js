@@ -11,8 +11,17 @@ const{ Categories } = require("./Categories")
 const{ Projects } = require("./Projects")
 const bodyParser = require("body-parser")
 
-app.use(cors());
+/*app.use(cors());
 app.use(bodyParser.json())
+*/
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PATCH, POST, DELETE");
+  res.header("Access-Control-Allow-hEADERS", "Content-Type");
+  app.use(cors());
+  next();  
+})
+
 // Category
 app.get("/categories", async (req, res) => {
   const categories = await Categories.find()
