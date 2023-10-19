@@ -11,7 +11,7 @@ const{ Categories } = require("./Categories")
 const{ Projects } = require("./Projects")
 
 app.use(cors({
-  'Access-Control-Allow-Origin': '*'
+  origin: "http://localhost:5174"
 }));
 
 // Category
