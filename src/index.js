@@ -9,18 +9,8 @@ const port = 3000
 
 const{ Categories } = require("./Categories")
 const{ Projects } = require("./Projects")
-const bodyParser = require("body-parser")
 
-/*app.use(cors());
-app.use(bodyParser.json())
-*/
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, PATCH, POST, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  app.use(cors());
-  next();  
-})
+app.use(cors());
 
 // Category
 app.get("/categories", async (req, res) => {
@@ -42,6 +32,11 @@ app.post("/categories", async (req, res) => {
 app.get("/projects", async (req, res) => {
   const projects = await Projects.find()
   res.send(projects)
+})
+
+app.get("/projects/:id", async (req, res) => {
+  const project = await Projects.find(req.params.id)
+  res.send(project)
 })
 
 app.delete("/projects/:id", async (req, res) => {
