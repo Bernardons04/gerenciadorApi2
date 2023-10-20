@@ -61,9 +61,9 @@ app.post("/projects", async (req, res) => {
 })
 
 app.patch("/projects/:id", async (req, res) => {
-  const { name, budget, category } = req.body;
+  const { name, budget, category, cost, services } = req.body;
   const project = await Projects.findByIdAndUpdate(req.params.id,
-    { name, budget, category }, {
+    { name, budget, category, cost, services }, {
     new: true
   })
   return res.send(project)
