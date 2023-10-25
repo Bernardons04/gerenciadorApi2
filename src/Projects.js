@@ -9,10 +9,6 @@ const projectsSchema = new mongoose.Schema({
       type: Number,
       required: true,
     },
-    descriptionProject: {
-      type: String,
-      require: true,
-    },
     category: {
       type: mongoose.Schema.Types.String,
       ref: 'Categories'

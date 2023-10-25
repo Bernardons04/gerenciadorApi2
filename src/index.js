@@ -54,16 +54,16 @@ app.delete("/projects/:id", async (req, res) => {
 })
 
 app.post("/projects", async (req, res) => {
-  const { name, descriptionProject, budget, category, services } = req.body;
-  const project = new Projects({ name, descriptionProject, budget, category, services })
+  const { name, budget, category, services } = req.body;
+  const project = new Projects({ name, budget, category, services })
   await project.save()
   res.send(project)
 })
 
 app.patch("/projects/:id", async (req, res) => {
-  const { name, descriptionProject, budget, category, cost, services } = req.body;
+  const { name, budget, category, cost, services } = req.body;
   const project = await Projects.findByIdAndUpdate(req.params.id,
-    { name, descriptionProject, budget, category, cost, services }, {
+    { name, budget, category, cost, services }, {
     new: true
   })
   return res.send(project)
