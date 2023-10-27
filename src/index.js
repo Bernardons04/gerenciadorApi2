@@ -7,8 +7,9 @@ const app = express()
 app.use(express.json())
 const port = 3000
 
-const{ Categories } = require("./Categories")
-const{ Projects } = require("./Projects")
+const { Categories } = require("./Categories")
+const { Projects } = require("./Projects")
+const { User } = require("./User")
 
 //app.use(cors());
 /*app.use(cors());
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
   app.use(cors());
   next();  
 })
+
 // Category
 app.get("/categories", async (req, res) => {
   const categories = await Categories.find()
@@ -54,16 +56,16 @@ app.delete("/projects/:id", async (req, res) => {
 })
 
 app.post("/projects", async (req, res) => {
-  const { name, descriptionProject, budget, category, services } = req.body;
-  const project = new Projects({ name, descriptionProject, budget, category, services })
+  const { name, descriptionProject, ownerProject, budget, category, services } = req.body;
+  const project = new Projects({ name, descriptionProject, ownerProject, budget, category, services })
   await project.save()
   res.send(project)
 })
 
 app.patch("/projects/:id", async (req, res) => {
-  const { name, descriptionProject, budget, category, cost, services } = req.body;
+  const { name, descriptionProject, ownerProject, budget, category, cost, services } = req.body;
   const project = await Projects.findByIdAndUpdate(req.params.id,
-    { name, descriptionProject, budget, category, cost, services }, {
+    { name, descriptionProject, ownerProject, budget, category, cost, services }, {
     new: true
   })
   return res.send(project)
@@ -87,7 +89,51 @@ app.post("/services", async (req, res) => {
   res.send(services)
 })*/
 
+// User
+app.post("/user", async (req, res) => {
+  const { username, email, password } = req.body;
+  const user = new User({ username, email, password })
+  await user.save()
+  res.send(user)
+})
+
+app.get("/user", async (req, res) => {
+  const users = await User.find()
+  res.send(users)
+})
+
+
+/*
+app.get('/user', (req, res) => {
+  const { email, password } = req.body;
+
+  const user = User.find(user => user.email === email && user.password === password);
+  if (user)
+  {
+      return res.status(200).json(user);
+  }
+
+  return res.status(401).json({ message: 'Credenciais inválidas' });
+});*/
+
+
+
 app.listen(port, () => {
   console.log("App Running")
   mongoose.connect('mongodb+srv://bernardoaraujons04:CSet1uFujxLirvAi@cluster0.8aa1xga.mongodb.net/?retryWrites=true&w=majority')
 })
+
+/*
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+*/

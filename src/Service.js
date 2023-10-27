@@ -3,14 +3,14 @@ const mongoose = require("mongoose")
 const servicesSchema = new mongoose.Schema({
     name: {
       type: String,
-      require: true,
+      required: true,
     },
     cost: {
       type: Number
     },
     description: {
       type: String,
-      require: true,
+      required: true,
     }
   }, {
     autoCreate: false,

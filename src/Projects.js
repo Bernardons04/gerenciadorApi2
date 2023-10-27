@@ -11,7 +11,10 @@ const projectsSchema = new mongoose.Schema({
     },
     descriptionProject: {
       type: String,
-      require: true,
+    },
+    ownerProject: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User' // Referência ao modelo de Usuário
     },
     category: {
       type: mongoose.Schema.Types.String,
